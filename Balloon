@@ -1,0 +1,18 @@
+public class Balloon {
+    double radius;
+    public void inflate(double amount) {
+        radius = 0;
+        radius = radius + amount;
+    }
+    public double getVolume(){
+        return Math.PI*radius*radius*radius;
+    }
+    public static void main(String[] args){
+        Balloon b1= new Balloon();
+        b1.inflate(20);
+        System.out.println("The radius of the balloon is: 20 and the volume is:" +b1.getVolume());
+        b1.inflate(30);
+        System.out.println("The radius of the balloon is: 30 and the volume is:" +b1.getVolume());
+    }
+    
+}
