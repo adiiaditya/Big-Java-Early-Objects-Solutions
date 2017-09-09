@@ -1,0 +1,54 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class DataSet{
+    
+    private static Scanner prompt;
+    
+    private static ArrayList<Double> values = new ArrayList<Double>();
+    
+    public static void add(double value)
+    {
+        values.add(value);
+    }
+    
+    public static double getAverage(ArrayList<Double> values){
+        double sum=0;
+        for(int i=0; i<values.size(); i++){
+            sum=sum+values.get(i);
+        }
+        return sum/(values.size());
+    }
+    
+    public static double getStandardDeviation(ArrayList<Double> values)
+    {
+        double mean = getAverage(values);
+        double squareSum=0;
+        
+        for(int i=0;i<values.size();i++){
+            squareSum = squareSum + Math.pow(values.get(i)-mean,2);
+        }
+        return Math.sqrt((squareSum)/(values.size()-1));
+    }
+    
+    public static void main(String[] args){
+        prompt = new Scanner(System.in);
+        
+        System.out.print("Enter the first number "
+                         + "of a set of values to get the average "
+                         + "and standard deviation.\nThis program "
+                         + "will automatically prompt you for the "
+                         + "next input.\n> ");
+        
+        while(prompt.hasNextDouble()) {
+            values.add(prompt.nextDouble());
+            System.out.print("Enter the next value, "
+                             + "or Q to abort.\n> ");
+        }
+        
+        System.out.println("The number of elements is:" + values.size());
+        System.out.println("The average is:" + getAverage(values));
+        System.out.println("The standard deviation is:" + getStandardDeviation(values));
+        
+    }
+}
